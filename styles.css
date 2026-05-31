@@ -1,0 +1,508 @@
+/* Diego González Basanta — Picos de Europa Blog */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --stone: #1a1612;
+  --granite: #2d2820;
+  --slate: #3d3530;
+  --mist: #b8a898;
+  --snow: #f5f0eb;
+  --cream: #ede5d8;
+  --pine: #2d4a2d;
+  --lichen: #7a9a6a;
+  --gold: #c8a84b;
+  --rust: #8b3a1a;
+  --sky: #4a7a9b;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--stone);
+  font-family: 'Crimson Text', Georgia, serif;
+  color: var(--snow);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ─── HEADER ─── */
+header {
+  background: linear-gradient(135deg, var(--granite) 0%, var(--stone) 60%, #0d0f14 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(200,168,75,0.25);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+
+header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-style: italic;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 20px rgba(200,168,75,0.3);
+}
+
+header h2::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-top: 4px;
+  opacity: 0.5;
+}
+
+/* ─── MENU ─── */
+.menu-button button {
+  color: var(--cream);
+  background: transparent;
+  border: 1px solid rgba(200,168,75,0.4);
+  padding: 10px 22px;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-button button:hover {
+  background: var(--gold);
+  color: var(--stone);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(200,168,75,0.3);
+}
+
+#menu-desplegable {
+  display: none;
+  position: absolute;
+  top: 75px;
+  right: 40px;
+  background: var(--granite);
+  border: 1px solid rgba(200,168,75,0.2);
+  border-radius: 4px;
+  padding: 8px 0;
+  min-width: 180px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+#menu-desplegable a {
+  display: block;
+  color: var(--mist);
+  text-decoration: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+}
+
+#menu-desplegable a:hover {
+  background: rgba(200,168,75,0.08);
+  color: var(--gold);
+  border-left-color: var(--gold);
+}
+
+#menu-desplegable.activo { display: block; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  padding: 80px 40px 60px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(45,74,45,0.3) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 20% 100%, rgba(74,122,155,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--lichen);
+  margin-bottom: 16px;
+  display: block;
+}
+
+main h3.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--snow);
+  line-height: 1.1;
+  text-align: center;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+main h3.hero-title span { color: var(--gold); }
+
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--mist);
+  max-width: 520px;
+  margin: 0 auto 50px;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+/* ─── GALERÍA ─── */
+.galeria-imagenes {
+  padding: 10px 40px 60px;
+}
+
+.imagenes {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 6px;
+  height: 480px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imagen-cell {
+  overflow: hidden;
+  position: relative;
+}
+
+.imagenes img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  min-height: 0;
+  transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s ease;
+  filter: brightness(0.85) saturate(1.1);
+}
+
+.imagenes img:hover {
+  transform: scale(1.04);
+  filter: brightness(1) saturate(1.3);
+}
+
+/* ─── DIVIDER ─── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,168,75,0.4), transparent);
+}
+
+.section-divider span {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* ─── TITULOS SECCIÓN ─── */
+main h3:not(.hero-title) {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 3.5vw, 44px);
+  font-style: italic;
+  color: var(--snow);
+  text-align: center;
+  padding: 50px 40px 10px;
+  font-weight: 700;
+}
+
+/* ─── MAPA ─── */
+.mapa-section {
+  padding: 20px 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mapa-intro {
+  text-align: center;
+  color: var(--mist);
+  font-style: italic;
+  font-size: 17px;
+  margin-bottom: 30px;
+}
+
+.mapa-wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(200,168,75,0.2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.mapa-wrapper iframe {
+  width: 100%;
+  height: 480px;
+  display: block;
+  border: none;
+}
+
+.mapa-overlay-label {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(26,22,18,0.9);
+  border: 1px solid rgba(200,168,75,0.35);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  pointer-events: none;
+}
+
+/* ─── LUGARES ─── */
+.lugares-visitados {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 30px 40px 80px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+a { text-decoration: none; color: inherit; display: block; }
+
+.lugar {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--granite);
+  border: 1px solid rgba(200,168,75,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.lugar:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(200,168,75,0.25);
+}
+
+.lugar img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease, filter 0.4s ease;
+  filter: brightness(0.8) saturate(1.1);
+}
+
+.lugar:hover img {
+  transform: scale(1.06);
+  filter: brightness(0.95) saturate(1.3);
+}
+
+.lugar-info {
+  padding: 18px 20px 46px;
+}
+
+.lugar h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--snow);
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.lugar-altitude {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.lugar-desc {
+  font-size: 14px;
+  color: var(--mist);
+  line-height: 1.65;
+}
+
+.lugar-arrow {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(200,168,75,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.lugar:hover .lugar-arrow {
+  background: var(--gold);
+  color: var(--stone);
+  border-color: var(--gold);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--granite);
+  border-top: 1px solid rgba(200,168,75,0.15);
+  color: var(--mist);
+  text-align: center;
+  padding: 32px 40px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+footer .footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* ─── PÁGINAS DE DETALLE ─── */
+.contenedor-detalle {
+  max-width: 960px;
+  margin: 60px auto;
+  padding: 0 40px 80px;
+}
+
+.imagen-destacada {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.imagen-destacada img {
+  width: 100%;
+  display: block;
+  filter: brightness(0.9) saturate(1.1);
+}
+
+.descripcion h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-style: italic;
+  color: var(--snow);
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+
+.descripcion p {
+  color: var(--mist);
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.boton-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid rgba(200,168,75,0.4);
+  border-radius: 3px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.boton-volver:hover {
+  background: var(--gold);
+  color: var(--stone);
+  border-color: var(--gold);
+}
+
+.fotos-ario, .fotos-jultayu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 12px;
+  padding: 20px 0;
+}
+
+.fotos-ario img, .fotos-jultayu img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.5s ease, filter 0.3s ease;
+  filter: brightness(0.85) saturate(1.1);
+}
+
+.fotos-ario img:hover, .fotos-jultayu img:hover {
+  transform: scale(1.02);
+  filter: brightness(1) saturate(1.3);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .imagenes {
+    grid-template-columns: 1fr 1fr;
+    height: 600px;
+  }
+  .imagen-cell:nth-child(1) { grid-column: 1 / -1; }
+}
+
+@media (max-width: 640px) {
+  header { padding: 16px 20px; }
+  header h2 { font-size: 18px; }
+  .hero { padding: 50px 20px 40px; }
+  .galeria-imagenes { padding: 10px 20px 40px; }
+  .imagenes {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .imagen-cell { height: 220px; }
+  .lugares-visitados { padding: 20px 20px 60px; gap: 16px; }
+  .mapa-section { padding: 10px 20px 40px; }
+  #menu-desplegable { right: 20px; }
+}
